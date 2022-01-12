@@ -48,17 +48,61 @@ class Deck
             }
         }
     }
+
+    shuffle()
+    {
+        for (var i = 0; i < 52; ++i)
+        {
+            tempCards = new Array(52);
+            tempCards[i] = cards[Math.trunc(52 * Math.random())]; // picks a random int from 0 - 51
+        }
+        cards = tempCards;
+    }
 }
 
 class Hand
 {
     card1;
     card2;
-    constructor(cards)
+    constructor(cards) // can be empty array or populated with two cards
     {
-        if (cards.length != 2) throw new Error("Error--hands must contain 2 cards");
-        card1 = cards[0];
-        card2 = cards[1];
+        if (cards.length != 2 && cards.length != 0) throw new Error("Error--hands must contain 2 or 0 cards");
+        if (cards.length == 2)
+        {
+            card1 = cards[0];
+            card2 = cards[1];
+        }
+        card1 = null;
+        card2 = null;
+    }
+
+}
+
+class Table
+{
+    users; // array of Hand objects
+    constructor(numUsers)
+    {
+        users = new Array(numUsers);
+        for (var i = 0; i < numUsers; ++i)
+        {
+            users[i] = new Hand([]);
+        }
+    }
+}
+class Deal
+{
+    table // table object, contains user's hands
+    deck; // deck object, containing remaining cards
+    discard; // discarded cards
+    communityCards; // community cards (flop, turn and river)
+
+    constructor(_table /*pass in a table object*/)
+    {
+        table = _table;
+        deck = new Deck();
+        discard = [];
+        communityCards = [];
     }
 }
 
