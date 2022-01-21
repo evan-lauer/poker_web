@@ -1,5 +1,6 @@
 // This section defines behavior for basic playing cards:
 
+
 function getCardName(suit, num)
 {
     if (suit < 1 || suit > 4) throw new Error("Error--suit index out of range");
@@ -34,22 +35,24 @@ class Card
     }
 }
 
+var masterDeck = new Array(52);
+
 class Deck
 {
     cards = new Array(52);
-    constructor()
-    {
-        for (var suit = 1; suit <= 4; ++suit) // In order: spades, clubs, diamonds, hearts
-        {
-            for (var num = 1; num <= 13; ++num) // 1=ace, 11=jack, 12=queen, 13=king
-            {
-                var card = new Card(suit, num);
-                cards[(suit - 1)*13 + num - 1] = card;
-            }
-        }
-    }
+    // constructor()
+    // {
+    //     for (var suit = 1; suit <= 4; ++suit) // In order: spades, clubs, diamonds, hearts
+    //     {
+    //         for (var num = 1; num <= 13; ++num) // 1=ace, 11=jack, 12=queen, 13=king
+    //         {
+    //             var card = new Card(suit, num);
+    //             cards[(suit - 1)*13 + num - 1] = card;
+    //         }
+    //     }
+    // }
 
-    shuffle()
+    constructor()
     {
         for (var i = 0; i < 52; ++i)
         {
